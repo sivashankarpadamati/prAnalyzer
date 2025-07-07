@@ -24,7 +24,7 @@ public class OpenAIService {
     private final WebClient.Builder webClient;
 
     public String generateReview(String diff) {
-        System.out.print("openai changes123");
+        System.out.print("openai changes1234");
         String prompt = PROMPT + "\n\n" + diff;
 
         Map<String, Object> requestBody = Map.of(
