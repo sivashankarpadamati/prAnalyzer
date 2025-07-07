@@ -27,6 +27,7 @@ public class EmailService {
         message.setSubject("AI Code Review - PR #" + prNumber + " in " + repo);
         message.setText("Hello,\n\nHere is the AI-generated review for PR #" + prNumber + " in repo " + repo + ":\n\n" + reviewContent);
         mailSender.send(message);
+        System.out.print("heyyy changed  something");
     }
 
 }
