@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.example.prAnalyzerApplication.Utils.Constants.PROMPT;
@@ -28,11 +29,12 @@ public class OpenAIService {
 
         Map<String, Object> requestBody = Map.of(
                 "model", model,
-                "messages", new Object[]{
-                        Map.of("role", "system", "content", "you are an expert code review"),
-                        Map.of("role", "system", "content", diff)
-                }
+                "messages", List.of(
+                        Map.of("role", "system", "content", "You are an expert code reviewer."),
+                        Map.of("role", "user", "content", prompt)
+                )
         );
+
         OpenAIResponse res = webClient.build().post().uri("https://api.openai.com/v1/chat/completions").header(
                         "Authorization", "Bearer " + openaiApiKey
                 ).header("Content-Type", "application/json").bodyValue(requestBody).
