@@ -11,7 +11,7 @@ public class GitHubService {
     @Value("${github.token}")
     private String gitHubToken;
 
-    @Value("github.base-url")
+    @Value("${github.base-url:https://api.github.com}")
     private String gitHubBaseUrl;
 
     private final WebClient.Builder webclient;
@@ -21,7 +21,7 @@ public class GitHubService {
     }
 
     public String gitPullRequestDiff(String repo,int prNumber){
-            System.out.println("Url = " + "chnage");
+            System.out.println("Url = " + "chnage1");
             String Url = gitHubBaseUrl + "/repos/" + repo + "/pulls/" + prNumber;
             return webclient.build().get().uri(Url).header("Authorization",gitHubToken)
                     .header("Accept","application/vnd.github.v3.diff").
