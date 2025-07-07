@@ -22,7 +22,7 @@ public class WebhookController {
     private final EmailService emailService;
 
 
-    @PostMapping
+    @PostMapping("/github")
     public ResponseEntity<String> handleWebhook(@RequestBody GitHubWebhookPayload gitHubWebhookPayload,
                                                 @RequestHeader("x-GitHub-Event") String eventType){
 
