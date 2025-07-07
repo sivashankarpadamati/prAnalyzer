@@ -23,6 +23,7 @@ public class OpenAIService {
     private final WebClient.Builder webClient;
 
     public String generateReview(String diff) {
+        System.out.print("openai changes");
         String prompt = PROMPT + "\n\n" + diff;
 
         Map<String, Object> requestBody = Map.of(
@@ -33,7 +34,7 @@ public class OpenAIService {
                 }
         );
         OpenAIResponse res = webClient.build().post().uri("https://api.openai.com/v1/chat/completions").header(
-                        "Authorization", "Bearer" + openaiApiKey
+                        "Authorization", "Bearer " + openaiApiKey
                 ).header("Content-Type", "application/json").bodyValue(requestBody).
                 retrieve().bodyToMono(OpenAIResponse.class).block();
         return res.getChoices().get(0).getMessage().getContent();
