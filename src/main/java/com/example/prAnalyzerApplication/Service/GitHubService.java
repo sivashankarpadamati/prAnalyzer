@@ -21,7 +21,8 @@ public class GitHubService {
     }
 
     public String gitPullRequestDiff(String repo,int prNumber){
-            String Url = gitHubToken + "/repos/" + repo + "/pulls/" + prNumber;
+            System.out.println("Url = " + "chnage");
+            String Url = gitHubBaseUrl + "/repos/" + repo + "/pulls/" + prNumber;
             return webclient.build().get().uri(Url).header("Authorization",gitHubToken)
                     .header("Accept","application/vnd.github.v3.diff").
                     retrieve().bodyToMono(String.class).block();
